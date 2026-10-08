@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Остров сокровищ — постоянная скидка</title>
+<meta name="description" content="Собирайте шаги в акции «Остров сокровищ» и получите постоянную скидку до 15% на наши услуги.">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:#222;font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.55}
+.page{width:min(650px,calc(100% - 32px));margin:auto;padding:42px 0 80px}
+h1{margin:0 0 8px;font-size:clamp(34px,7vw,44px);line-height:1.08;letter-spacing:-.5px}
+.author{color:#999;font:15px Arial,sans-serif;margin-bottom:44px}
+h2{margin:48px 0 12px;font-size:28px;line-height:1.2}
+h3{margin:34px 0 6px;font-size:22px;line-height:1.25}
+p{margin:0 0 18px}
+ul{margin:8px 0 22px;padding-left:28px}
+li{margin:5px 0}
+a{color:#1683b5;text-decoration:none}
+a:hover{text-decoration:underline}
+.lead{font-size:20px}
+.notice{margin:34px 0;padding:18px 20px;background:#f7f7f7;border-radius:6px}
+.example{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;margin:14px 0 26px;padding:13px 18px;border:0;border-radius:9px;background:#1683b5;color:#fff;font:700 16px Arial,sans-serif;text-decoration:none;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
+.example:hover{color:#fff;text-decoration:none;background:#126f99;transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,0,0,.16)}
+.divider{height:1px;background:#eee;margin:38px 0}
+.footer{margin-top:50px;color:#999;font:14px Arial,sans-serif}
+.contact-box{margin:28px 0;padding:22px;background:#f5f7f9;border:1px solid #e2e6ea;border-radius:14px;text-align:center}
+.contact-box h3{margin:0 0 8px;font-size:20px}
+.contact-box p{margin:0 0 16px;color:#555;line-height:1.5}
+.contact-buttons{display:flex;gap:10px;justify-content:center}
+.contact-button{flex:1;max-width:260px;min-height:50px;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border-radius:10px;color:#fff!important;text-decoration:none!important;font:600 16px Arial,sans-serif;padding:10px}
+.contact-telegram{background:#1683b5}
+.contact-max{background:#222}
+.treasure-table-wrap{margin:20px 0 26px;border:1px solid #e9e5dc;border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.treasure-table{width:100%;border-collapse:separate;border-spacing:0;font:15px/1.35 Arial,sans-serif}
+.treasure-table th{background:#202c39;color:#fff;padding:14px 10px;text-align:left;font-size:14px}
+.treasure-table th:first-child{width:48%}
+.treasure-table th:nth-child(2){width:25%;text-align:center}
+.treasure-table th:last-child{text-align:center;width:27%}
+.treasure-table td{padding:13px 10px;border-bottom:1px solid #eee9df;vertical-align:middle;background:#fff}
+.treasure-table tr:last-child td{border-bottom:0}
+.treasure-table td:nth-child(2){text-align:center;color:#414b56;white-space:nowrap}
+.treasure-table td:last-child{text-align:center;background:#fff0c9;font-weight:700;color:#222;white-space:nowrap}
+.treasure-table tr:nth-child(1) td:last-child{background:#f7f3e9;color:#69717a}
+.treasure-table tr:nth-child(2) td:last-child{background:#fff0c9}
+.treasure-table tr:nth-child(3) td:last-child{background:#ffe7a0}
+.treasure-table tr:nth-child(4) td:last-child{background:#ffdc79}
+.treasure-table tr:nth-child(5) td:last-child{background:#ffcf54}
+.treasure-table tr:nth-child(6) td:last-child{background:#f8bb36}
+.level{display:flex;align-items:center;gap:9px;font-weight:700;color:#202a36}
+.level-icon{font-size:25px;flex:0 0 30px;text-align:center}
+.discount{font-size:18px}
+.discount small{display:block;font-size:11px;line-height:1.2;margin-top:2px}
+.method-card{padding:18px 20px;margin:14px 0;border:1px solid #e5e5e5;border-radius:12px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.method-card p:last-child{margin-bottom:0}
+.example-box{padding:16px 18px;background:#fff8e7;border:1px solid #f2dfac;border-radius:10px;margin:20px 0 24px}
+.example-box strong{color:#222}
+.final-call{margin:28px 0;padding:22px 20px;background:#fff8e7;border:1px solid #f0dfb6;border-radius:14px}
+.final-call h2{margin:0 0 10px}
+@media(max-width:600px){
+ .page{padding-top:30px}
+ body{font-size:17px}
+ h2{font-size:25px}
+ .contact-buttons{flex-direction:column}
+ .contact-button{max-width:none;width:100%}
+ .treasure-table{font-size:13px}
+ .treasure-table th{font-size:12px;padding:12px 6px}
+ .treasure-table td{padding:12px 6px}
+ .level{gap:5px}
+ .level-icon{font-size:20px;flex-basis:23px}
+ .discount{font-size:16px}
+ .discount small{font-size:10px}
+}
+@media(max-width:380px){
+ .treasure-table{font-size:12px}
+ .treasure-table th:first-child{width:46%}
+ .treasure-table th:nth-child(2){width:27%}
+ .treasure-table th:last-child{width:27%}
+ .level{font-size:12px}
+ .level-icon{font-size:18px;flex-basis:20px}
+ .discount{font-size:14px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1>🏝️ Остров сокровищ</h1>
+  <div class="author">Акция · постоянная скидка на наши услуги</div>
+
+  <p class="lead">Здесь вы можете <strong>собирать шаги и получать постоянную скидку на наши услуги — вплоть до 15% навсегда.</strong></p>
+  <p>Ниже вы увидите, сколько шагов нужно для каждого уровня, как получать шаги и какую скидку вы получите.</p>
+
+  <h2>🗺️ Ваша карта</h2>
+  <div class="treasure-table-wrap">
+    <table class="treasure-table">
+      <thead><tr><th>Уровень</th><th>Нужно набрать</th><th>Ваша скидка</th></tr></thead>
+      <tbody>
+        <tr><td><div class="level"><span class="level-icon">🏝️</span><span>Старт</span></div></td><td>0 шагов</td><td><span class="discount">—</span></td></tr>
+        <tr><td><div class="level"><span class="level-icon">🪙</span><span>Монета</span></div></td><td>1 шаг</td><td><span class="discount">3%</span></td></tr>
+        <tr><td><div class="level"><span class="level-icon">🧰</span><span>Сундук</span></div></td><td>3 шага</td><td><span class="discount">7%</span></td></tr>
+        <tr><td><div class="level"><span class="level-icon">💎</span><span>Драгоценный камень</span></div></td><td>5 шагов</td><td><span class="discount">10%</span></td></tr>
+        <tr><td><div class="level"><span class="level-icon">🪙</span><span>Золотой сундук</span></div></td><td>7 шагов</td><td><span class="discount">12%</span></td></tr>
+        <tr><td><div class="level"><span class="level-icon">👑</span><span>Главное сокровище</span></div></td><td>9 шагов</td><td><span class="discount">15%<small>НАВСЕГДА</small></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Как получать шаги</h2>
+  <div class="method-card">
+    <p><strong>👤 Новый клиент по вашей рекомендации → +2 шага</strong></p>
+    <p>Первый заказ нового клиента — <strong>от 1 500 ₽</strong>.</p>
+  </div>
+  <div class="method-card">
+    <p><strong>💰 Повторный заказ → +1 шаг</strong></p>
+    <p>Сумма заказа — <strong>от 3 000 ₽</strong>.</p>
+  </div>
+  <p><strong>Шаги можно комбинировать.</strong></p>
+  <div class="example-box"><strong>Например:</strong> 2 приглашённых клиента + 1 повторный заказ = <strong>5 шагов → 10% скидки.</strong></div>
+
+  <h2>С чего начать?</h2>
+  <p>Ваше путешествие начинается с <strong>первого заказа от 1 500 ₽.</strong></p>
+  <p>После него вы начинаете собирать шаги и двигаться к главному уровню:</p>
+  <p class="lead">👑 <strong>9 шагов → 15% скидки НАВСЕГДА.</strong></p>
+
+  <div class="final-call">
+    <h2>🏝️ Начнём?</h2>
+    <p>Напишите, кого хотите поздравить и с каким событием — остальное мы подскажем.</p>
+    <p><strong>🎁 Первый заказ — от 1 500 ₽.</strong></p>
+    <div class="contact-buttons">
+      <a class="contact-button contact-telegram" href="https://t.me/m/N-18HZnIMjcy" target="_blank" rel="noopener">Написать в Telegram →</a>
+      <a class="contact-button contact-max" href="https://max.ru/u/f9LHodD0cOJZdFVWWsPsiYq_I9vpDUczDxid2MR-IUc57cSNs_zd9qQHza8" target="_blank" rel="noopener">Написать в MAX →</a>
+    </div>
+  </div>
+  <div class="footer">© 2026 · Акция</div>
+</main>
+</body>
+</html>
