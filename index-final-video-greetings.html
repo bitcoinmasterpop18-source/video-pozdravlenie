@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Примеры и стоимость</title>
+<meta name="description" content="Примеры и стоимость видеопоздравлений">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#fff;color:#222;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;line-height:1.55
+}
+.page{width:min(650px,calc(100% - 32px));margin:auto;padding:42px 0 80px}
+h1{margin:0 0 8px;font-size:clamp(34px,7vw,44px);line-height:1.08;letter-spacing:-.5px}
+.author{color:#999;font:15px Arial,sans-serif;margin-bottom:44px}
+h2{margin:48px 0 12px;font-size:28px;line-height:1.2}
+h3{margin:34px 0 6px;font-size:22px;line-height:1.25}
+p{margin:0 0 18px}
+ul{margin:8px 0 22px;padding-left:28px}
+li{margin:5px 0}
+a{color:#1683b5;text-decoration:none}
+a:hover{text-decoration:underline}
+.lead{font-size:20px}
+.notice{margin:34px 0;padding:18px 20px;background:#f7f7f7;border-radius:6px}
+.price{font:700 24px Arial,sans-serif;margin:0 0 8px}
+.muted{color:#777;font-size:16px}
+.example{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:52px;
+  margin:14px 0 26px;
+  padding:13px 18px;
+  border:0;
+  border-radius:9px;
+  background:#1683b5;
+  color:#fff;
+  font:700 16px Arial,sans-serif;
+  text-decoration:none;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.example:hover{
+  color:#fff;
+  text-decoration:none;
+  background:#126f99;
+  transform:translateY(-1px);
+  box-shadow:0 5px 14px rgba(0,0,0,.16);
+}
+.example:active{
+  transform:translateY(1px);
+  box-shadow:0 2px 5px rgba(0,0,0,.12);
+}
+.divider{height:1px;background:#eee;margin:38px 0}
+.footer{margin-top:50px;color:#999;font:14px Arial,sans-serif}
+
+
+/* Карточки выпусков */
+.section-intro{margin:-2px 0 22px;color:#666;font-size:17px}
+.news-products{display:flex;flex-direction:column;gap:16px;margin:0 0 30px}
+.news-card{
+  border:1px solid #e4e4e4;border-radius:14px;padding:20px 18px 18px;
+  background:#fff;box-shadow:0 3px 14px rgba(0,0,0,.055)
+}
+.news-card-head{display:flex;align-items:flex-start;justify-content:space-between}
+.news-icon{font-size:28px;line-height:1;margin-bottom:8px}
+.news-card h3{margin:0 0 7px;font:700 22px/1.2 Arial,sans-serif}
+.news-price{font:700 22px/1.2 Arial,sans-serif}
+.news-summary{margin:12px 0 16px;color:#555;font-size:16px;line-height:1.45}
+.news-card details{border-top:1px solid #eee;padding-top:13px}
+.news-card summary{
+  cursor:pointer;list-style:none;color:#1683b5;font:700 15px Arial,sans-serif;
+  display:flex;justify-content:space-between;align-items:center
+}
+.news-card summary::-webkit-details-marker{display:none}
+.news-card summary:after{content:"＋";font-size:20px;font-weight:400}
+.news-card details[open] summary:after{content:"−"}
+.news-card details ul{margin:13px 0 2px;padding-left:22px;font-size:16px}
+
+/* Карточки тарифов */
+.tariff-intro{margin:28px 0 14px}
+.tariff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 28px}
+.tariff-card{
+  appearance:none;border:1px solid #e5e5e5;background:#fff;border-radius:12px;
+  padding:18px 12px 16px;text-align:left;cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);transition:.18s;
+  font:inherit;color:#222;min-width:0
+}
+.tariff-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.09)}
+.tariff-card:active{transform:scale(.98)}
+.tariff-price{font:700 25px Arial,sans-serif;line-height:1.1;margin-bottom:9px}
+.tariff-name{font:700 16px Arial,sans-serif;line-height:1.2;margin-bottom:10px}
+.tariff-preview{font-size:14px;line-height:1.35;color:#555}
+.tariff-action{display:block;margin-top:13px;color:#1683b5;font:700 13px Arial,sans-serif}
+
+/* Окно тарифа */
+.modal{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.55);padding:18px;
+  align-items:center;justify-content:center
+}
+.modal.open{display:flex}
+.modal-box{
+  width:min(620px,100%);max-height:min(88vh,760px);overflow:auto;
+  background:#fff;border-radius:14px;box-shadow:0 18px 60px rgba(0,0,0,.3);
+  padding:28px 24px 26px;position:relative
+}
+.modal-close{
+  position:absolute;right:12px;top:9px;border:0;background:transparent;
+  font:32px Arial,sans-serif;color:#777;cursor:pointer;line-height:1;padding:4px 8px
+}
+.modal-close:hover{color:#222}
+.modal-price{font:700 32px Arial,sans-serif;margin:0 42px 4px 0}
+.modal-title{font:700 21px Arial,sans-serif;margin-bottom:22px}
+.quote-title{font:700 17px Arial,sans-serif;border-bottom:1px solid #ddd;padding-bottom:7px;margin-bottom:14px}
+.quote-text{font-size:18px;line-height:1.55;margin:0}
+.modal-hint{margin-top:24px;padding-top:16px;border-top:1px solid #eee;color:#777;font:14px Arial,sans-serif}
+@media(max-width:600px){
+  .page{padding-top:30px}
+  body{font-size:17px}
+  h2{font-size:25px}
+  .tariff-grid{grid-template-columns:1fr;gap:10px}
+  .tariff-card{padding:16px}
+  .tariff-price{font-size:27px}
+  .tariff-name{font-size:17px}
+  .tariff-preview{font-size:15px}
+  .modal{padding:10px}
+  .modal-box{max-height:92vh;padding:26px 19px 22px;border-radius:12px}
+  .modal-price{font-size:29px}
+  .quote-text{font-size:17px}
+}
+</style>
+
+<style>
+.duration-prices{
+  margin:-8px 0 28px;
+  border:1px solid #e5e5e5;
+  border-radius:10px;
+  background:#fff;
+  padding:0 16px;
+}
+.duration-prices summary{
+  cursor:pointer;
+  list-style:none;
+  padding:15px 0;
+  color:#1683b5;
+  font:700 15px Arial,sans-serif;
+}
+.duration-prices summary::-webkit-details-marker{display:none}
+.duration-prices summary:after{
+  content:"＋";
+  float:right;
+  font-size:20px;
+  font-weight:400;
+}
+.duration-prices[open] summary:after{content:"−"}
+.duration-table-wrap{overflow-x:auto;border-top:1px solid #eee}
+.duration-prices table{
+  width:100%;
+  border-collapse:collapse;
+  font:16px Arial,sans-serif;
+}
+.duration-prices th,
+.duration-prices td{
+  padding:10px 6px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+}
+.duration-prices th{
+  color:#666;
+  font-size:14px;
+  font-weight:700;
+}
+.duration-prices td:last-child,
+.duration-prices th:last-child{text-align:right}
+.duration-prices tr:last-child td{border-bottom:0}
+.duration-note{
+  margin:10px 0 15px;
+  color:#777;
+  font:13px/1.4 Arial,sans-serif;
+}
+.star-note{
+  margin:-12px 0 28px;
+  color:#666;
+  font:14px/1.5 Arial,sans-serif;
+}
+@media(max-width:600px){
+  .duration-prices{padding:0 12px}
+  .duration-prices table{font-size:15px}
+}
+.additional-options{
+  margin:0 0 28px;
+  border:1px solid #e5e5e5;
+  border-radius:10px;
+  background:#fff;
+  padding:0 16px;
+}
+.additional-options summary{
+  cursor:pointer;
+  list-style:none;
+  padding:15px 0;
+  color:#1683b5;
+  font:700 15px Arial,sans-serif;
+}
+.additional-options summary::-webkit-details-marker{display:none}
+.additional-options summary:after{
+  content:"＋";
+  float:right;
+  font-size:20px;
+  font-weight:400;
+}
+.additional-options[open] summary:after{content:"−"}
+.additional-options ul{
+  border-top:1px solid #eee;
+  padding-top:13px;
+  margin-top:0;
+}
+.additional-options p{
+  color:#666;
+  font-size:16px;
+}
+</style>
+
+<style>
+.contact-box {
+  margin: 28px 0;
+  padding: 22px;
+  background: #f5f7f9;
+  border: 1px solid #e2e6ea;
+  border-radius: 14px;
+  text-align: center;
+}
+.contact-box h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+.contact-box p {
+  margin: 0 0 16px;
+  color: #555;
+  line-height: 1.5;
+}
+.contact-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.contact-button {
+  flex: 1;
+  max-width: 260px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 16px;
+}
+.contact-telegram { background: #1683b5; }
+.contact-max { background: #222; }
+@media (max-width: 600px) {
+  .contact-buttons { flex-direction: column; }
+  .contact-button { max-width: none; width: 100%; }
+}
+</style>
+
+</head>
+<body>
+<main class="page">
+  <h1>Видеопоздравления</h1>
+  <div class="author">Примеры работ и стоимость</div>
+
+  <h2>Примеры и Стоимость</h2>
+  <p class="lead">Что входит:</p>
+  <ul>
+    <li>Сделаем любую звезду или мультгероя</li>
+    <li>Напишем персональный красивый текст</li>
+    <li>Соблюдаем согласованные сроки</li>
+  </ul>
+
+  <p><a class="example" href="https://disk.yandex.ru/d/5kve5v3IYaJhPw" target="_blank" rel="noopener">▶️ &nbsp; Посмотреть пример поздравления</a></p>
+
+  <p class="tariff-intro"><strong>Выберите тариф, чтобы посмотреть пример объёма текста.</strong></p>
+
+  <div class="tariff-grid">
+    <button class="tariff-card" data-tariff="short">
+      <div class="tariff-price">890 ₽</div>
+      <div class="tariff-name">Краткое поздравление</div>
+      <div class="tariff-preview"><strong>≈ 20 секунд</strong> · <strong>до 30 слов</strong></div>
+      <span class="tariff-action">Посмотреть текст →</span>
+    </button>
+
+    <button class="tariff-card" data-tariff="detailed">
+      <div class="tariff-price">2490 ₽</div>
+      <div class="tariff-name">Подробное поздравление</div>
+      <div class="tariff-preview"><strong>≈ 40 секунд</strong> · <strong>до 60 слов</strong></div>
+      <span class="tariff-action">Посмотреть текст →</span>
+    </button>
+
+    <button class="tariff-card" data-tariff="extended">
+      <div class="tariff-price">3190 ₽</div>
+      <div class="tariff-name">Расширенное поздравление</div>
+      <div class="tariff-preview"><strong>≈ 1 минута</strong> · <strong>до 120 слов</strong></div>
+      <span class="tariff-action">Посмотреть текст →</span>
+    </button>
+  </div>
+
+  <details class="duration-prices">
+    <summary>Нужна другая длительность? Посмотреть стоимость →</summary>
+    <div class="duration-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Длительность</th>
+            <th>Примерный объём текста</th>
+            <th>Цена</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>20 сек</td><td>до 30 слов</td><td>890 ₽</td></tr>
+          <tr><td>40 сек</td><td>до 60 слов</td><td>2 490 ₽</td></tr>
+          <tr><td>1:00</td><td>до 120 слов</td><td>3 190 ₽</td></tr>
+          <tr><td>1:30</td><td>150–183 слова</td><td>4 000 ₽</td></tr>
+          <tr><td>2:00</td><td>200–244 слова</td><td>5 000 ₽</td></tr>
+          <tr><td>2:15</td><td>225–275 слов</td><td>5 500 ₽</td></tr>
+          <tr><td>2:30</td><td>250–306 слов</td><td>6 000 ₽</td></tr>
+          <tr><td>2:45</td><td>275–337 слов</td><td>6 500 ₽</td></tr>
+          <tr><td>3:00</td><td>300–366 слов</td><td>7 000 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="duration-note">Точная длительность зависит от темпа речи.</p>
+  </details>
+
+  <p class="star-note">⭐ При заказе любого формата новостей <strong>каждая дополнительная звезда — 1 800 ₽</strong> (до 1 минуты с персональным текстом).</p>
+
+  <div class="notice">
+    <strong>⏱️ Сроки</strong>
+    <p>Без спешки: день в день или на следующий день.</p>
+    <p>Нужно быстрее? Уточните при обращении.</p>
+  </div>
+
+  <div class="notice">
+    <strong>💳 Оплата</strong>
+    <p><strong>50% — после утверждения сценария.</strong><br>
+    <strong>50% — после просмотра готового видео.</strong></p>
+    <p>Вы сначала утверждаете текст поздравления, его аудиоверсию и только после этого вносите первую часть оплаты.</p>
+  </div>
+
+  <div class="notice">
+    <strong>❤️ Важно</strong>
+    <p>Все форматы мы проверяем на родственниках нашей команды — поэтому хорошо знаем, какие поздравления вызывают настоящие эмоции.</p>
+  </div>
+
+  <h2>ВЫПУСКИ НОВОСТЕЙ</h2>
+  <p class="section-intro">Выберите формат, чтобы посмотреть пример и узнать, что входит.</p>
+
+  <div class="news-products">
+
+    <article class="news-card">
+      <div class="news-card-head">
+        <div>
+          <div class="news-icon">📰</div>
+          <h3>Персональный выпуск новостей</h3>
+          <div class="news-price">от 3 590 ₽</div>
+        </div>
+      </div>
+      <p class="news-summary">Ведущая новостей + выбранная звезда. Персональный сценарий и выпуск до 2 минут.</p>
+      <a class="example" href="https://disk.yandex.ru/i/tz6w480f2Nze2A" target="_blank" rel="noopener">▶️ &nbsp; Посмотреть пример</a>
+      <details>
+        <summary>Что входит</summary>
+        <ul>
+          <li>Сценарий на 1:40–2:00 мин</li>
+          <li>Красивый персональный текст</li>
+          <li>Ведущая — до 30 сек</li>
+          <li>Любая звезда — до 1 мин</li>
+          <li>До 4 фотографий</li>
+          <li>Добавим Ваши видео-поздравления</li>
+        </ul>
+      </details>
+    </article>
+
+    <article class="news-card">
+      <div class="news-card-head">
+        <div>
+          <div class="news-icon">🥂</div>
+          <h3>Тост Президента</h3>
+          <div class="news-price">от 3 890 ₽</div>
+        </div>
+      </div>
+      <p class="news-summary">Путин поднимает бокал и лично обращается к имениннику в праздничном выпуске.</p>
+      <a class="example" href="https://disk.yandex.ru/i/8rZ8YDCJs814Gg" target="_blank" rel="noopener">▶️ &nbsp; Посмотреть пример</a>
+      <details>
+        <summary>Что входит</summary>
+        <ul>
+          <li>Сценарий на 1:40–2:00 мин</li>
+          <li>Красивый персональный текст</li>
+          <li>Президентский тост — Путин поднимет бокал за именинника</li>
+          <li>Ведущая — до 30 сек</li>
+          <li>Путин — до 1 мин</li>
+          <li>До 4 фотографий</li>
+          <li>Добавим Ваши видео-поздравления</li>
+        </ul>
+      </details>
+    </article>
+
+    <article class="news-card">
+      <div class="news-card-head">
+        <div>
+          <div class="news-icon">🏛️</div>
+          <h3>Кремль — масштабный выпуск</h3>
+          <div class="news-price">от 8 490 ₽</div>
+        </div>
+      </div>
+      <p class="news-summary">Большой выпуск с Кремлём, ведущей и несколькими персонажами.</p>
+      <a class="example" href="https://disk.yandex.ru/i/k7fXh5pSSZW9PQ" target="_blank" rel="noopener">▶️ &nbsp; Посмотреть пример</a>
+      <details>
+        <summary>Что входит</summary>
+        <ul>
+          <li>Сценарий на 5–6 мин с персональными правками</li>
+          <li>Президентский кортеж, Кремль и куранты</li>
+          <li>Ведущая новостей — вступление, середина и завершение</li>
+          <li>Путин, Трамп, Си Цзиньпин, Лукашенко и ведущая</li>
+          <li>До 4 фотографий</li>
+          <li>Добавим Ваши видео-поздравления</li>
+        </ul>
+      </details>
+    </article>
+
+    <article class="news-card">
+      <div class="news-card-head">
+        <div>
+          <div class="news-icon">🎬</div>
+          <h3>3 Путина</h3>
+          <div class="news-price">от 7 490 ₽</div>
+        </div>
+      </div>
+      <p class="news-summary">Три сцены с Президентом — каждая раскрывает отдельную историю об имениннике.</p>
+      <a class="example" href="https://disk.yandex.ru/i/I1LE03xd5TP3cw" target="_blank" rel="noopener">▶️ &nbsp; Посмотреть пример</a>
+      <details>
+        <summary>Что входит</summary>
+        <ul>
+          <li>Сюжет на 3:30–4:00 мин</li>
+          <li>3 локации с Президентом</li>
+          <li>Каждая локация раскрывает отдельную тему об имениннике: семья, работа, дача и т. д.</li>
+          <li>Ведущая новостей — вступление и завершение</li>
+          <li>До 4 фотографий</li>
+        </ul>
+      </details>
+    </article>
+
+  </div>
+
+  <div class="divider"></div>
+  <details class="additional-options">
+    <summary>⚙️ Можно дополнительно</summary>
+    <ul>
+      <li>Выбрать другую ведущую</li>
+      <li>Больше фотографий</li>
+      <li>Добавим ваше видео</li>
+      <li>Добавить дополнительных звёзд — 1 800 ₽ / звезда, до 1 минуты с персональным текстом</li>
+      <li>Более длинный текст</li>
+      <li>Другие изменения по вашему сценарию</li>
+    </ul>
+    <p>Есть своя идея? Расскажите нам — обсудим, как её реализовать.</p>
+  </details>
+
+  <div class="footer">© 2026 · Видеопоздравления</div>
+</main>
+
+<div class="modal" id="tariffModal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" type="button" aria-label="Закрыть">×</button>
+    <div class="modal-price" id="modalPrice"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="quote-title">Пример объёма текста:</div>
+    <p class="quote-text" id="modalText"></p>
+    <div class="modal-hint">Нажмите × или за пределами окна, чтобы вернуться к странице.</div>
+  </div>
+</div>
+
+<script>
+const tariffs = {
+  short: {
+    price: "890 ₽",
+    title: "Краткое поздравление",
+    text: "Примите искренние поздравления с днём рождения! Желаю Вам крепкого здоровья, уверенности в своих силах, удачи в делах и благополучия во всём!"
+  },
+  detailed: {
+    price: "2490 ₽",
+    title: "Подробное поздравление",
+    text: "Примите самые тёплые поздравления с днём рождения! Ваше трудолюбие, принципиальность и умение добиваться поставленных целей заслуживают глубокого уважения. Благодаря Вашему профессионализму, ответственности и внимательному отношению к людям удаётся успешно реализовывать важные задачи и вдохновлять окружающих личным примером. От всей души желаю Вам крепкого здоровья, семейного благополучия, неиссякаемой энергии, уверенности в будущем и новых успехов во всех начинаниях!"
+  },
+  extended: {
+    price: "3190 ₽",
+    title: "Расширенное поздравление",
+    text: "Примите мои самые искренние и сердечные поздравления с днём рождения! Ваш многолетний труд, высокая ответственность и преданность своему делу заслуженно вызывают уважение коллег, партнёров и всех, кому довелось с Вами работать. Вы обладаете редким умением принимать взвешенные решения, добиваться поставленных целей и вдохновлять окружающих своим примером. Пусть накопленный опыт, жизненная мудрость и внутренняя сила помогают Вам уверенно двигаться вперёд и достигать новых высот. Пусть каждый новый день открывает перед Вами новые возможности, приносит достойные результаты, радость от достигнутых целей и уверенность в завтрашнем дне. Желаю, чтобы рядом всегда были надёжные люди, поддержка близких, уважение окружающих и вдохновение для новых свершений. Желаю Вам крепкого здоровья, душевного тепла, благополучия, поддержки близких людей и больших успехов во всех сферах жизни!"
+  }
+};
+
+const modal = document.getElementById("tariffModal");
+const price = document.getElementById("modalPrice");
+const title = document.getElementById("modalTitle");
+const text = document.getElementById("modalText");
+
+function openTariff(key){
+  const t = tariffs[key];
+  price.textContent = t.price;
+  title.textContent = t.title;
+  text.textContent = t.text;
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeTariff(){
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+document.querySelectorAll(".tariff-card").forEach(card=>{
+  card.addEventListener("click",()=>openTariff(card.dataset.tariff));
+});
+document.querySelector(".modal-close").addEventListener("click",closeTariff);
+modal.addEventListener("click",e=>{ if(e.target === modal) closeTariff(); });
+document.addEventListener("keydown",e=>{ if(e.key === "Escape") closeTariff(); });
+</script>
+
+<div class="contact-box">
+  <h3>Хотите заказать поздравление?</h3>
+  <p>Напишите нам — обсудим идею, подберём формат и сроки.</p>
+  <div class="contact-buttons">
+    <a class="contact-button contact-telegram" href="https://t.me/m/N-18HZnIMjcy" target="_blank" rel="noopener">Написать в Telegram →</a>
+    <a class="contact-button contact-max" href="https://max.ru/u/f9LHodD0cOJZdFVWWsPsiYq_I9vpDUczDxid2MR-IUc57cSNs_zd9qQHza8" target="_blank" rel="noopener">Написать в MAX →</a>
+  </div>
+</div>
+
+</body>
+</html>
