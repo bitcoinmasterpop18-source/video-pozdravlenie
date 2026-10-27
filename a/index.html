@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14101c">
+<title>Видеопоздравление от любой звезды</title>
+<style>
+:root{
+  --bg:#14101c; --card:#1e1829; --card2:#261f34; --line:rgba(255,255,255,.09);
+  --text:#f4f0fa; --muted:#a89fba; --gold:#e8c26a; --gold2:#c99a3a; --ink:#1a1305;
+}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding-bottom:84px}
+.page{max-width:520px;margin:0 auto;padding:0 16px}
+h1{font-size:26px;line-height:1.2;margin:18px 0 6px}
+h2{font-size:20px;margin:30px 0 4px}
+.sub{color:var(--muted);font-size:15px}
+.gold{color:var(--gold)}
+
+/* video 16:9 */
+.video{position:relative;display:block;aspect-ratio:16/9;border-radius:14px;overflow:hidden;color:#fff;text-decoration:none;
+  background:linear-gradient(135deg,#3a2a5c,#14101c 70%)}
+.video.news{background:linear-gradient(135deg,#2c3e66,#14101c 75%)}
+.video.toast{background:linear-gradient(135deg,#6a2f3a,#14101c 75%)}
+.video.kremlin{background:linear-gradient(135deg,#7a1f2a,#1d1115 75%)}
+.video .ico{position:absolute;left:12px;top:10px;font-size:28px}
+.video .play{position:absolute;inset:0;margin:auto;width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.95);
+  display:flex;align-items:center;justify-content:center}
+.video .play::after{content:"";margin-left:5px;border-left:18px solid #1a1305;border-top:11px solid transparent;border-bottom:11px solid transparent}
+.video .tag{position:absolute;left:10px;bottom:9px;font-size:12px;background:rgba(0,0,0,.55);padding:3px 9px;border-radius:7px}
+.video.cover{background-size:cover;background-position:center}
+.video.cover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.6))}
+.video.cover .play,.video.cover .tag{z-index:1}
+.video:active .play{transform:scale(.94)}
+button.video{border:0;width:100%;padding:0;font:inherit;cursor:pointer;display:block}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.carousel{margin-top:14px}
+.track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:0 16px;scroll-padding:0 16px}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always}
+.slide .video{box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.dots{display:flex;justify-content:center;gap:7px;margin-top:10px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:.2s}
+.dots i.on{background:var(--gold);width:20px;border-radius:4px}
+.swipe{text-align:center;color:var(--muted);font-size:12px;margin-top:6px}
+.hero .lead{margin:14px 0 14px;color:#e5def2}
+
+.btn{display:block;text-align:center;text-decoration:none;font-weight:600;font-size:16px;padding:13px 16px;border-radius:12px;
+  background:linear-gradient(180deg,var(--gold),var(--gold2));color:var(--ink);border:0;width:100%;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:14px}
+.card.hit{border:1.5px solid var(--gold)}
+.badge{display:inline-block;font-size:12px;font-weight:600;background:var(--gold);color:var(--ink);padding:2px 10px;border-radius:999px;margin-bottom:8px}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:12px 2px 2px}
+.title{font-size:17px;font-weight:600}
+.price{font-size:17px;font-weight:700;color:var(--gold);white-space:nowrap}
+.desc{color:var(--muted);font-size:14px;margin:0 2px}
+details{margin:10px 2px 0}
+summary{cursor:pointer;color:var(--gold);font-size:14px;list-style:none;padding:4px 0}
+summary::-webkit-details-marker{display:none}
+summary::after{content:" ▾"}
+details[open] summary::after{content:" ▴"}
+details ul{padding-left:20px;color:#d9d2e6;font-size:14px;margin-top:6px}
+details li{margin:3px 0}
+
+/* tariffs */
+.tariffs{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.tariff{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:68px;padding:12px 16px;background:transparent;border:0;border-top:1px solid var(--line);color:var(--text);font:inherit;text-align:left;cursor:pointer}
+.tariff:first-child{border-top:0}
+.tariff.first{background:rgba(232,194,106,.08)}
+.tariff:active{background:var(--card2)}
+.tariff .d{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600}
+.tariff .d em{font-style:normal;font-size:11px;font-weight:600;background:var(--gold);color:var(--ink);padding:1px 8px;border-radius:999px;white-space:nowrap}
+.tariff .w{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.tariff .r{display:flex;align-items:center;gap:10px;text-align:right}
+.tariff .r b{display:block;font-size:20px;color:var(--gold);line-height:1.1}
+.tariff .r s{display:block;font-size:12px;color:var(--muted)}
+.tariff .r i{font-style:normal;font-size:24px;color:var(--muted);line-height:1}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+td,th{padding:7px 4px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-weight:500}
+td:last-child,th:last-child{text-align:right}
+.note{color:var(--muted);font-size:13px;margin-top:8px}
+
+/* steps */
+.step{display:flex;gap:12px;align-items:flex-start;margin-top:12px}
+.step .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--card2);border:1px solid var(--gold);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.step b{display:block;font-size:15px}
+.step span{color:var(--muted);font-size:14px}
+.extra{background:var(--card2);border-radius:14px;padding:12px 14px;margin-top:14px;font-size:14px;color:#e5def2}
+
+/* reviews */
+.reviews{margin-top:14px}
+.rtrack{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -16px;padding:0 16px;scroll-padding:0 16px;align-items:flex-start}
+.rtrack::-webkit-scrollbar{display:none}
+.rev{flex:0 0 84%;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.rev .who{display:flex;gap:10px;align-items:center}
+.rev .av{flex:none;width:36px;height:36px;border-radius:50%;background:var(--card2);border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700}
+.rev b{display:block;font-size:15px}
+.rev small{color:var(--muted);font-size:12px}
+.rev .stars{color:var(--gold);font-size:15px;margin:8px 0 6px;letter-spacing:1px}
+.rev .stars small{letter-spacing:0;margin-left:4px}
+.rev p{font-size:14px;color:#e5def2;line-height:1.5;margin-top:6px}
+
+/* bottom bar */
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(20,16,28,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));z-index:5}
+.bar .in{max-width:520px;margin:0 auto;display:flex;gap:8px}
+.bar .btn{padding:12px 6px;font-size:14px;white-space:nowrap}
+.footer{text-align:center;color:var(--muted);font-size:13px;margin:30px 0 8px}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:flex-end;justify-content:center;z-index:10}
+.modal.open{display:flex}
+.sheet{background:var(--card);border-radius:20px 20px 0 0;padding:20px 18px calc(24px + env(safe-area-inset-bottom));width:100%;max-width:520px;max-height:85vh;overflow:auto;position:relative}
+.sheet .x{position:absolute;right:12px;top:8px;background:none;border:0;color:var(--muted);font-size:32px;line-height:1;cursor:pointer}
+.sheet .p{color:var(--gold);font-weight:700;font-size:22px}
+.sheet .t{font-weight:600;font-size:17px;margin-bottom:10px}
+.sheet .q{color:var(--muted);font-size:13px;margin-bottom:6px}
+.sheet p.txt{font-size:15px;line-height:1.55;background:var(--card2);border-radius:12px;padding:12px 14px}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <section class="hero">
+    <h1>Видеопоздравление <span class="gold">от любой звезды</span></h1>
+    <p class="sub">Выберите, кто поздравит, и мы напишем текст под вашего человека</p>
+    <div class="carousel" id="car">
+<div class="track">
+      <div class="slide"><button type="button" class="video cover" style="background-image:url(../img/cover1.jpg)" data-vk="456239023" aria-label="Пример 1"><span class="play"></span></button></div>
+      <div class="slide"><button type="button" class="video cover" style="background-image:url(../img/cover2.jpg)" data-vk="456239054" aria-label="Пример 2"><span class="play"></span></button></div>
+      <div class="slide"><button type="button" class="video cover" style="background-image:url(../img/cover3.jpg)" data-vk="456239039" aria-label="Пример 3"><span class="play"></span></button></div>
+    </div>
+    <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+    <p class="swipe">Примеры. Звезда может быть любая</p>
+    </div>
+  </section>
+
+  <h2 id="tariffs" style="margin-top:22px">Выберите длительность</h2>
+  <p class="sub">Нажмите на тариф, чтобы увидеть пример текста.</p>
+  <div class="tariffs">
+    <button class="tariff first" data-t="short" type="button"><div><span class="d">20 секунд <em>Первый заказ</em></span><span class="w">до 30 слов</span></div><div class="r"><div><b>890&nbsp;₽</b><s>1&nbsp;790&nbsp;₽</s></div><i>›</i></div></button>
+    <button class="tariff" data-t="detailed" type="button"><div><span class="d">40 секунд</span><span class="w">до 60 слов</span></div><div class="r"><div><b>2&nbsp;490&nbsp;₽</b></div><i>›</i></div></button>
+    <button class="tariff" data-t="extended" type="button"><div><span class="d">1 минута</span><span class="w">до 120 слов</span></div><div class="r"><div><b>3&nbsp;190&nbsp;₽</b></div><i>›</i></div></button>
+  </div>
+  <p class="note" style="margin-top:10px"><b class="gold">890&nbsp;₽</b> — при первом заказе, после 1&nbsp;790&nbsp;₽.</p>
+  <details class="card" style="margin-top:12px">
+    <summary style="margin:0">Нужна другая длительность?</summary>
+    <table>
+      <thead><tr><th>Длительность</th><th>Текст</th><th>Цена</th></tr></thead>
+      <tbody>
+        <tr><td>20 сек</td><td>до 30 слов</td><td>1&nbsp;790&nbsp;₽</td></tr>
+        <tr><td>40 сек</td><td>до 60 слов</td><td>2&nbsp;490&nbsp;₽</td></tr>
+        <tr><td>1:00</td><td>до 120 слов</td><td>3&nbsp;190&nbsp;₽</td></tr>
+        <tr><td>1:30</td><td>150–183 слова</td><td>4&nbsp;000&nbsp;₽</td></tr>
+        <tr><td>2:00</td><td>200–244 слова</td><td>5&nbsp;000&nbsp;₽</td></tr>
+        <tr><td>2:15</td><td>225–275 слов</td><td>5&nbsp;500&nbsp;₽</td></tr>
+        <tr><td>2:30</td><td>250–306 слов</td><td>6&nbsp;000&nbsp;₽</td></tr>
+        <tr><td>2:45</td><td>275–337 слов</td><td>6&nbsp;500&nbsp;₽</td></tr>
+        <tr><td>3:00</td><td>300–366 слов</td><td>7&nbsp;000&nbsp;₽</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Точная длительность зависит от темпа речи.</p>
+  </details>
+
+  <h2 id="news">Выпуски новостей</h2>
+  <p class="sub">Нажмите на видео, чтобы посмотреть пример.</p>
+
+  <article class="card">
+    <button type="button" class="video cover" style="background-image:url(../img/news1.jpg)" data-vk="456239020" aria-label="Пример: персональный выпуск новостей">
+      <span class="play"></span>
+    </button>
+    <div class="head"><span class="title">Персональный выпуск новостей</span><span class="price">от 3&nbsp;590&nbsp;₽</span></div>
+    <p class="desc">Ведущая новостей + выбранная звезда. Персональный сценарий и выпуск до 2 минут.</p>
+    <details><summary>Что входит</summary>
+      <ul>
+        <li>Сценарий на 1:40–2:00 мин</li>
+        <li>Красивый персональный текст</li>
+        <li>Ведущая — до 30 сек</li>
+        <li>Любая звезда — до 1 мин</li>
+        <li>До 4 фотографий</li>
+        <li>Добавим ваши видео-поздравления</li>
+      </ul>
+    </details>
+  </article>
+
+  <article class="card hit">
+    <span class="badge">Хит</span>
+    <button type="button" class="video cover" style="background-image:url(../img/news2.jpg)" data-vk="456239017" aria-label="Пример: тост Президента">
+      <span class="play"></span>
+    </button>
+    <div class="head"><span class="title">Новости&nbsp;— тост&nbsp;Президента</span><span class="price">от 4&nbsp;590&nbsp;₽</span></div>
+    <p class="desc">Путин поднимает бокал и лично обращается к имениннику в праздничном выпуске.</p>
+    <details><summary>Что входит</summary>
+      <ul>
+        <li>Сценарий на 1:40–2:00 мин</li>
+        <li>Красивый персональный текст</li>
+        <li>Президентский тост — Путин поднимет бокал за именинника</li>
+        <li>Ведущая — до 30 сек</li>
+        <li>Путин — до 1 мин</li>
+        <li>До 4 фотографий</li>
+        <li>Добавим ваши видео-поздравления</li>
+      </ul>
+    </details>
+  </article>
+
+  <article class="card">
+    <button type="button" class="video cover" style="background-image:url(../img/news3.jpg)" data-vk="456239018" aria-label="Пример: Кремль, масштабный выпуск">
+      <span class="play"></span>
+    </button>
+    <div class="head"><span class="title">Кремль — масштабный выпуск</span><span class="price">от 8&nbsp;490&nbsp;₽</span></div>
+    <p class="desc">Сценарий на 5–6 минут с ведущей и несколькими персонажами.</p>
+    <details><summary>Что входит</summary>
+      <ul>
+        <li>Сценарий на 5–6 мин с персональными правками</li>
+        <li>Президентский кортеж, Кремль и куранты</li>
+        <li>Ведущая новостей — вступление, середина и завершение</li>
+        <li>Путин, Трамп, Си Цзиньпин, Лукашенко и ведущая</li>
+        <li>До 4 фотографий</li>
+        <li>Добавим ваши видео-поздравления</li>
+      </ul>
+    </details>
+  </article>
+
+  <p class="extra">⭐ В любом выпуске новостей каждая дополнительная звезда — <b>1&nbsp;800&nbsp;₽</b> (до&nbsp;40&nbsp;секунд с персональным текстом).</p>
+
+  <details class="card">
+    <summary style="margin:0">⚙️ Можно дополнительно</summary>
+    <ul>
+      <li>Выбрать другую ведущую</li>
+      <li>Больше фотографий</li>
+      <li>Добавим ваше видео</li>
+      <li>Дополнительные звёзды — 1&nbsp;800&nbsp;₽ / звезда</li>
+      <li>Более длинный текст</li>
+      <li>Другие изменения по вашему сценарию</li>
+    </ul>
+    <p class="note">Есть своя идея? Расскажите нам — обсудим, как её реализовать.</p>
+  </details>
+
+  <h2>Как всё проходит</h2>
+  <div class="step"><div class="n">1</div><div><b>Согласуем текст</b><span>Утверждаем текст поздравления, затем 50% оплаты.</span></div></div>
+  <div class="step"><div class="n">2</div><div><b>Делаем видео</b><span>От 1 до 3 дней. Нужно быстрее — уточните.</span></div></div>
+  <div class="step"><div class="n">3</div><div><b>Получаете готовое видео</b><span>Оставшиеся 50% после просмотра готового видео.</span></div></div>
+
+
+
+  <div class="footer">© 2026 · Видеопоздравления</div>
+</main>
+
+<div class="bar">
+  <div class="in">
+    <a class="btn" href="https://t.me/m/N-18HZnIMjcy" target="_blank" rel="noopener">Заказать в Telegram</a>
+    <a class="btn ghost" href="https://max.ru/u/f9LHodD0cOJZdFVWWsPsiYq_I9vpDUczDxid2MR-IUc57cSNs_zd9qQHza8" target="_blank" rel="noopener">Заказать в MAX</a>
+  </div>
+</div>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <button class="x" type="button" aria-label="Закрыть">×</button>
+    <div class="p" id="mp"></div>
+    <div class="t" id="mt"></div>
+    <p class="q" id="mn" hidden style="color:var(--gold);font-size:13px;margin:-4px 0 10px"></p>
+    <div class="q">Пример объёма текста:</div>
+    <p class="txt" id="mx"></p>
+  </div>
+</div>
+
+<script>
+const track = document.querySelector("#car .track"), dots = document.querySelectorAll("#dots i");
+track.addEventListener("scroll", () => {
+  const i = Math.round(track.scrollLeft / track.clientWidth);
+  dots.forEach((d, k) => d.classList.toggle("on", k === i));
+}, { passive: true });
+dots.forEach((d, k) => d.addEventListener("click", () => track.scrollTo({ left: k * track.clientWidth, behavior: "smooth" })));
+document.querySelectorAll(".video[data-vk]").forEach(v => v.addEventListener("click", () => {
+  const f = document.createElement("iframe");
+  f.src = "https://vk.com/video_ext.php?oid=-223914466&id=" + v.dataset.vk + "&hd=2&autoplay=1";
+  f.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+  f.allowFullscreen = true;
+  v.replaceChildren(f);
+  v.classList.add("playing");
+}, { once: true }));
+const tariffs = {
+  short: {
+    price: "890\u00a0₽",
+    note: "890\u00a0₽ — при первом заказе, после 1\u00a0790\u00a0₽.",
+    title: "Видео на 20 секунд",
+    text: "Примите искренние поздравления с днём рождения! Желаю Вам крепкого здоровья, уверенности в своих силах, удачи в делах и благополучия во всём!"
+  },
+  detailed: {
+    price: "2\u00a0490\u00a0₽",
+    title: "Видео на 40 секунд",
+    text: "Примите самые тёплые поздравления с днём рождения! Ваше трудолюбие, принципиальность и умение добиваться поставленных целей заслуживают глубокого уважения. Благодаря Вашему профессионализму, ответственности и внимательному отношению к людям удаётся успешно реализовывать важные задачи и вдохновлять окружающих личным примером. От всей души желаю Вам крепкого здоровья, семейного благополучия, неиссякаемой энергии, уверенности в будущем и новых успехов во всех начинаниях!"
+  },
+  extended: {
+    price: "3\u00a0190\u00a0₽",
+    title: "Видео на 1 минуту",
+    text: "Примите мои самые искренние и сердечные поздравления с днём рождения! Ваш многолетний труд, высокая ответственность и преданность своему делу заслуженно вызывают уважение коллег, партнёров и всех, кому довелось с Вами работать. Вы обладаете редким умением принимать взвешенные решения, добиваться поставленных целей и вдохновлять окружающих своим примером. Пусть накопленный опыт, жизненная мудрость и внутренняя сила помогают Вам уверенно двигаться вперёд и достигать новых высот. Пусть каждый новый день открывает перед Вами новые возможности, приносит достойные результаты, радость от достигнутых целей и уверенность в завтрашнем дне. Желаю, чтобы рядом всегда были надёжные люди, поддержка близких, уважение окружающих и вдохновение для новых свершений. Желаю Вам крепкого здоровья, душевного тепла, благополучия, поддержки близких людей и больших успехов во всех сферах жизни!"
+  }
+};
+const modal = document.getElementById("modal");
+function openT(k){
+  const t = tariffs[k];
+  document.getElementById("mp").textContent = t.price;
+  document.getElementById("mt").textContent = t.title;
+  const mn = document.getElementById("mn"); mn.textContent = t.note || ""; mn.hidden = !t.note;
+  document.getElementById("mx").textContent = t.text;
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeT(){
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+document.querySelectorAll(".tariff").forEach(b => b.addEventListener("click", () => openT(b.dataset.t)));
+modal.querySelector(".x").addEventListener("click", closeT);
+modal.addEventListener("click", e => { if (e.target === modal) closeT(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeT(); });
+</script>
+</body>
+</html>
