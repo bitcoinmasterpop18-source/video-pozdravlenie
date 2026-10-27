@@ -71,8 +71,10 @@ details li{margin:3px 0}
 .tariffs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
 .tariff{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;color:var(--text);font:inherit;cursor:pointer}
 .tariff{position:relative}
+.tariff em.more{position:static;transform:none;display:block;background:none;color:var(--gold);font-size:12px;font-weight:500;padding:0;margin-top:8px;border-radius:0}
 .tariff em{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-style:normal;font-size:11px;font-weight:600;background:var(--gold);color:var(--ink);padding:1px 8px;border-radius:999px;white-space:nowrap}
 .tariff.first{border:1.5px solid var(--gold)}
+.tariff:active{transform:scale(.97)}
 .tariff s{display:block;font-size:12px;color:var(--muted);margin-top:-1px}
 .tariff.mid{border:1px solid var(--line)}
 .tariff b{display:block;font-size:19px;color:var(--gold)}
@@ -143,9 +145,9 @@ td:last-child,th:last-child{text-align:right}
   <h2 id="tariffs" style="margin-top:22px">Выберите длительность</h2>
   <p class="sub">Нажмите на тариф, чтобы увидеть пример текста.</p>
   <div class="tariffs">
-    <button class="tariff first" data-t="short" type="button"><em>Первый заказ</em><b>890&nbsp;₽</b><s>1&nbsp;790&nbsp;₽</s><span>Краткое</span><i>≈ 20 сек</i><span>до 30 слов</span></button>
-    <button class="tariff mid" data-t="detailed" type="button"><b>2&nbsp;490&nbsp;₽</b><span>Подробное</span><i>≈ 40 сек</i><span>до 60 слов</span></button>
-    <button class="tariff" data-t="extended" type="button"><b>3&nbsp;190&nbsp;₽</b><span>Расширенное</span><i>≈ 1 мин</i><span>до 120 слов</span></button>
+    <button class="tariff first" data-t="short" type="button"><em>Первый заказ</em><b>890&nbsp;₽</b><s>1&nbsp;790&nbsp;₽</s><span>Краткое</span><i>≈ 20 сек</i><span>до 30 слов</span><em class="more">Пример текста ›</em></button>
+    <button class="tariff mid" data-t="detailed" type="button"><b>2&nbsp;490&nbsp;₽</b><span>Подробное</span><i>≈ 40 сек</i><span>до 60 слов</span><em class="more">Пример текста ›</em></button>
+    <button class="tariff" data-t="extended" type="button"><b>3&nbsp;190&nbsp;₽</b><span>Расширенное</span><i>≈ 1 мин</i><span>до 120 слов</span><em class="more">Пример текста ›</em></button>
   </div>
   <p class="note" style="margin-top:10px"><b class="gold">890&nbsp;₽</b> — при первом заказе, после 1&nbsp;790&nbsp;₽.</p>
   <details class="card" style="margin-top:12px">
