@@ -68,18 +68,18 @@ details ul{padding-left:20px;color:#d9d2e6;font-size:14px;margin-top:6px}
 details li{margin:3px 0}
 
 /* tariffs */
-.tariffs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
-.tariff{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;color:var(--text);font:inherit;cursor:pointer}
-.tariff{position:relative}
-.tariff em.more{position:static;transform:none;display:block;background:none;color:var(--gold);font-size:12px;font-weight:500;padding:0;margin-top:8px;border-radius:0}
-.tariff em{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-style:normal;font-size:11px;font-weight:600;background:var(--gold);color:var(--ink);padding:1px 8px;border-radius:999px;white-space:nowrap}
-.tariff.first{border:1.5px solid var(--gold)}
-.tariff:active{transform:scale(.97)}
-.tariff s{display:block;font-size:12px;color:var(--muted);margin-top:-1px}
-.tariff.mid{border:1px solid var(--line)}
-.tariff b{display:block;font-size:19px;color:var(--gold)}
-.tariff span{display:block;font-size:12px;color:var(--muted);line-height:1.35;margin-top:3px}
-.tariff i{display:block;font-style:normal;font-size:12px;color:var(--text);margin-top:6px}
+.tariffs{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.tariff{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:68px;padding:12px 16px;background:transparent;border:0;border-top:1px solid var(--line);color:var(--text);font:inherit;text-align:left;cursor:pointer}
+.tariff:first-child{border-top:0}
+.tariff.first{background:rgba(232,194,106,.08)}
+.tariff:active{background:var(--card2)}
+.tariff .d{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600}
+.tariff .d em{font-style:normal;font-size:11px;font-weight:600;background:var(--gold);color:var(--ink);padding:1px 8px;border-radius:999px;white-space:nowrap}
+.tariff .w{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.tariff .r{display:flex;align-items:center;gap:10px;text-align:right}
+.tariff .r b{display:block;font-size:20px;color:var(--gold);line-height:1.1}
+.tariff .r s{display:block;font-size:12px;color:var(--muted)}
+.tariff .r i{font-style:normal;font-size:24px;color:var(--muted);line-height:1}
 table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
 td,th{padding:7px 4px;border-bottom:1px solid var(--line);text-align:left}
 th{color:var(--muted);font-weight:500}
@@ -145,9 +145,9 @@ td:last-child,th:last-child{text-align:right}
   <h2 id="tariffs" style="margin-top:22px">Выберите длительность</h2>
   <p class="sub">Нажмите на тариф, чтобы увидеть пример текста.</p>
   <div class="tariffs">
-    <button class="tariff first" data-t="short" type="button"><em>Первый заказ</em><b>890&nbsp;₽</b><s>1&nbsp;790&nbsp;₽</s><span>Краткое</span><i>≈ 20 сек</i><span>до 30 слов</span><em class="more">Пример текста ›</em></button>
-    <button class="tariff mid" data-t="detailed" type="button"><b>2&nbsp;490&nbsp;₽</b><span>Подробное</span><i>≈ 40 сек</i><span>до 60 слов</span><em class="more">Пример текста ›</em></button>
-    <button class="tariff" data-t="extended" type="button"><b>3&nbsp;190&nbsp;₽</b><span>Расширенное</span><i>≈ 1 мин</i><span>до 120 слов</span><em class="more">Пример текста ›</em></button>
+    <button class="tariff first" data-t="short" type="button"><div><span class="d">20 секунд <em>Первый заказ</em></span><span class="w">до 30 слов</span></div><div class="r"><div><b>890&nbsp;₽</b><s>1&nbsp;790&nbsp;₽</s></div><i>›</i></div></button>
+    <button class="tariff" data-t="detailed" type="button"><div><span class="d">40 секунд</span><span class="w">до 60 слов</span></div><div class="r"><div><b>2&nbsp;490&nbsp;₽</b></div><i>›</i></div></button>
+    <button class="tariff" data-t="extended" type="button"><div><span class="d">1 минута</span><span class="w">до 120 слов</span></div><div class="r"><div><b>3&nbsp;190&nbsp;₽</b></div><i>›</i></div></button>
   </div>
   <p class="note" style="margin-top:10px"><b class="gold">890&nbsp;₽</b> — при первом заказе, после 1&nbsp;790&nbsp;₽.</p>
   <details class="card" style="margin-top:12px">
@@ -303,17 +303,17 @@ const tariffs = {
   short: {
     price: "890\u00a0₽",
     note: "890\u00a0₽ — при первом заказе, после 1\u00a0790\u00a0₽.",
-    title: "Краткое поздравление",
+    title: "Видео на 20 секунд",
     text: "Примите искренние поздравления с днём рождения! Желаю Вам крепкого здоровья, уверенности в своих силах, удачи в делах и благополучия во всём!"
   },
   detailed: {
     price: "2\u00a0490\u00a0₽",
-    title: "Подробное поздравление",
+    title: "Видео на 40 секунд",
     text: "Примите самые тёплые поздравления с днём рождения! Ваше трудолюбие, принципиальность и умение добиваться поставленных целей заслуживают глубокого уважения. Благодаря Вашему профессионализму, ответственности и внимательному отношению к людям удаётся успешно реализовывать важные задачи и вдохновлять окружающих личным примером. От всей души желаю Вам крепкого здоровья, семейного благополучия, неиссякаемой энергии, уверенности в будущем и новых успехов во всех начинаниях!"
   },
   extended: {
     price: "3\u00a0190\u00a0₽",
-    title: "Расширенное поздравление",
+    title: "Видео на 1 минуту",
     text: "Примите мои самые искренние и сердечные поздравления с днём рождения! Ваш многолетний труд, высокая ответственность и преданность своему делу заслуженно вызывают уважение коллег, партнёров и всех, кому довелось с Вами работать. Вы обладаете редким умением принимать взвешенные решения, добиваться поставленных целей и вдохновлять окружающих своим примером. Пусть накопленный опыт, жизненная мудрость и внутренняя сила помогают Вам уверенно двигаться вперёд и достигать новых высот. Пусть каждый новый день открывает перед Вами новые возможности, приносит достойные результаты, радость от достигнутых целей и уверенность в завтрашнем дне. Желаю, чтобы рядом всегда были надёжные люди, поддержка близких, уважение окружающих и вдохновение для новых свершений. Желаю Вам крепкого здоровья, душевного тепла, благополучия, поддержки близких людей и больших успехов во всех сферах жизни!"
   }
 };
